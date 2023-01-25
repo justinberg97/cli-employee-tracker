@@ -1,17 +1,6 @@
 const inquirer = require("inquirer");
 const connection = require("./connection");
 
-const questions = [
-  { type: "input", message: "something in", name: "first" },
-  {
-    type: "list",
-    message: "please choose one",
-    name: "second",
-    choices: ["first string", "second string", "third string"],
-  },
-  { name: "third", message: "tell me a joke", type: "input" },
-];
-
 const menuquestion = {
     type: "list",
     message: "please choose what you want to view.",
@@ -64,18 +53,21 @@ function promptMenu() {
 }
 
 async function viewDepartments() {
-  console.log('I need to show all departments');
   const [departments] = await connection.promise().query("SELECT * FROM department;")
   console.table(departments)
   promptMenu();
 }
 
-function viewRoles() {
-  console.log('I need to show all roles');
+async function viewRoles() {
+  const [roles] = await connection.promise().query("SELECT * FROM role;")
+  console.table(roles)
+  promptMenu();
 }
 
-function viewEmployees() {
-  console.log('I need to show all employees');
+async function viewEmployees() {
+  const [employees] = await connection.promise().query("SELECT * FROM employee;")
+  console.table(employees)
+promptMenu();
 }
 async function addDepartment() {
   const {answer} = inquirer.prompt(departmentQuestion)
