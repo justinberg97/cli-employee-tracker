@@ -13,13 +13,9 @@ const menuquestion = {
       "add a role",
       "add a employee",
       "update an employee role",
+      "Quit"
     ],
   };
-  const departmentQuestion = {
-    type: "input",
-    message: "what is the new Department name?",
-    name: "answer"
-  }
   
 function promptMenu() {
 
@@ -44,8 +40,12 @@ function promptMenu() {
       case "add a employee":
         addEmployee();
         break;
+        case "update an employee role":
+          updateEmployeeRole();
+          break;
       default: 
-      console.log('wrong')
+      quit();
+      
 
     
     }
@@ -70,38 +70,74 @@ async function viewEmployees() {
 promptMenu();
 }
 async function addDepartment() {
-  const {answer} = inquirer.prompt(departmentQuestion)
-  
+        const answer = await inquirer.prompt({
+            type: "input",
+            message: "What is the name of the department?",
+            name: "deptName"
+        });
+        const result = await connection.promise().query("INSERT INTO department (name) VALUES (?)", [answer.deptName]);
+        console.table(result);
+        promptMenu();
+   
+}
+
+async function addRole() {
+      const answer = await inquirer.prompt([
+          {
+              type: "input",
+              message: "What would you like the name of the role to be?",
+              name: "roleName"
+          },
+          {
+              type: "input",
+              message: "How about the salary?",
+              name: "salaryTotal"
+          },
+          {
+              type: "input",
+              message: "Lastly, give the new role a department id?",
+              name: "deptID"
+          }
+      ]);
+      const result = await connection.promise().query("INSERT INTO role (title, salary, department_id) VALUES (?, ?, ?)", [answer.roleName, answer.salaryTotal, answer.deptID]);
+      console.table(result);
+      promptMenu();
+
+}
+
+async function addEmployee() {
+      const answer = await inquirer.prompt([
+          {
+              type: "input",
+              message: "What is the employee's first name?",
+              name: "FirstName"
+          },
+          {
+              type: "input",
+              message: "What about the last name?",
+              name: "LastName"
+          },
+          {
+              type: "input",
+              message: "What is this person's role id number?",
+              name: "roleID"
+          },
+          {
+              type: "input",
+              message: "And what about the manager id?",
+              name: "managerID"
+          }
+      ]);
+      const result = await connection.promise().query("INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?)", [answer.eeFirstName, answer.eeLastName, answer.roleID, answer.managerID]);
+      console.table(result);
+      promptMenu();
+
+}
+
+function quit() {
+  connection.end();
+  process.exit();
 }
 
 promptMenu();
   
-
-  
-
-// const obj = { answer: 'emp', name:"justin", occupation: "coder" }
-
-// const {occupation} = obj
-// console.log(occupation)
-
-// const arr = ["bob", "sally", "steve"]
-
-// const [name1] = arr
-
-// console.log(name1)
-
-
-// switch (answers.answer) {
-//   case "role":
-//     console.log("I NEED TO VIEW ALL ROLES")
-//     break;
-//   case "department":
-//     console.log("I NEED TO VIEW ALL deps")
-//     break;
-//   case "emp":
-//     console.log("I NEED TO VIEW ALL emps")
-//     break;
-//   default:
-//     console.log("I HIT THE DEFAULT")
-//     break;
-// }
