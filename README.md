@@ -36,4 +36,6 @@ https://github.com/justinberg97/cli-employee-tracker
 
 # Walkthrough Video Link
 
+https://docs.google.com/document/d/1WgRZXwqJqZTfprR2fSQgPhEKw2vXPRuCGtIsnw9gCyM/edit
+
 
