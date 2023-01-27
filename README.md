@@ -6,19 +6,6 @@
 
 # Followed the given Acceptance Criteria given from Bootcamp Spot 
 
-
-Module 12 Challenge
-Due Nov 9, 2022 by 11:59pm Points 100 Submitting a text entry box
-SQL Challenge: Employee Tracker
-Developers frequently have to create interfaces that allow non-developers to easily view and interact with information stored in databases. These interfaces are called content management systems (CMS). Your assignment this week is to build a command-line application from scratch to manage a company's employee database, using Node.js, Inquirer, and MySQL.
-
-IMPORTANT
-In order to install inquirer, please use npm i inquirer@8.2.4.
-
-Because this application won’t be deployed, you’ll also need to create a walkthrough video that demonstrates its functionality and all of the following acceptance criteria being met. You’ll need to submit a link to the video and add it to the README of your project.
-
-Refer to the Video Submission Guide Links to an external site.on the Full-Stack Blog for additional guidance on creating a video.
-
 User Story
 AS A business owner
 I WANT to be able to view and manage the departments, roles, and employees in my company
@@ -45,6 +32,8 @@ THEN I am prompted to select an employee to update and their new role and this i
 
 # Github Link 
 
+https://github.com/justinberg97/cli-employee-tracker
 
 # Walkthrough Video Link
+
 
